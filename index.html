@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LED Control</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body { text-align: center; font-family: sans-serif; padding: 20px; }
+    button { padding: 15px 30px; margin: 10px; font-size: 18px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Керування світлодіодами</h2>
+  <button onclick="sendCommand('led1_on')">Увімкнути LED 1</button>
+  <button onclick="sendCommand('led2_on')">Увімкнути LED 2</button>
+  <button onclick="sendCommand('led3_on')">Увімкнути LED 3</button>
+  <button onclick="sendCommand('all_on')">Увімкнути всі</button>
+  <button onclick="sendCommand('all_off')">Вимкнути всі</button>
+  <button onclick="sendCommand('blink')">Мигати</button>
+  <button onclick="sendCommand('traffic')">Світлофор</button>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+
+    function sendCommand(command) {
+      fetch(`https://api.telegram.org/bot<8180015543:AAGjdmQ-J8NXnDdKci0OnpolDV0XJbNi75A>/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: "<1027658801>",
+          text: command
+        })
+      }).then(() => tg.close());
+    }
+  </script>
+</body>
+</html>
