@@ -37,18 +37,17 @@
     tg.expand();
 
     function sendCommand(command) {
-      fetch('https://api.telegram.org/bot<7954160160:AAH-4stXTUGsrj5ktYFrwfFv2PKjyQF4gFg>/sendMessage', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          chat_id: tg.initDataUnsafe.user.id,
-          text: command
-        })
-      }).then(() => {
-        tg.close(); // Закриває міні-апп
-      });
+     fetch('https://api.telegram.org/botТВОЙ_ТОКЕН/sendMessage', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    chat_id: tg.initDataUnsafe.user.id,
+    text: '/on1'
+  })
+});
+
     }
   </script>
 </body>
