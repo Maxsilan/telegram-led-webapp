@@ -1,54 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Управление ESP32</title>
-  <meta charset="UTF-8">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <style>
-    body {
-      background: #121212;
-      color: #fff;
-      font-family: sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
-    button {
-      padding: 12px 24px;
-      margin: 10px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: none;
-      background: #2a9d8f;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <h2>Управление ESP32</h2>
-  <button onclick="sendCommand('/on1')">LED 1</button>
-  <button onclick="sendCommand('/on2')">LED 2</button>
-  <button onclick="sendCommand('/blink')">Блимати</button>
-  <button onclick="sendCommand('/traffic')">Светофор</button>
-  <button onclick="sendCommand('/off')">Выкл. все</button>
-
-  <script>
-    const tg = window.Telegram.WebApp;
-    tg.expand();
-
-    function sendCommand(command) {
-     fetch('https://api.telegram.org/bot7954160160:AAH-4stXTUGsrj5ktYFrwfFv2PKjyQF4gFg/sendMessage', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    chat_id: tg.initDataUnsafe.user.id,
-    text: '/on1'
-  })
-});
-
-    }
-  </script>
-</body>
+  <head>
+    <title>LED Control</title>
+    <script>
+      // Функція для відправки даних до бота
+      function sendCommand(cmd) {
+        Telegram.WebApp.sendData(cmd); // Надіслати команду до бота
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Управління світлодіодами</h2>
+    <button onclick="sendCommand('on1')">Увімкнути LED1</button>
+    <button onclick="sendCommand('on2')">Увімкнути LED2</button>
+    <button onclick="sendCommand('on3')">Увімкнути LED3</button>
+    <button onclick="sendCommand('onall')">Увімкнути всі</button>
+    <button onclick="sendCommand('off')">Вимкнути</button>
+    <button onclick="sendCommand('blink')">Миготіння</button>
+    <button onclick="sendCommand('traffic')">Світлофор</button>
+  </body>
 </html>
