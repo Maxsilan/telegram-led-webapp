@@ -1,21 +1,39 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Управление светодиодами</title>
-    <script>
-      function sendCommand(cmd) {
-        Telegram.WebApp.sendData(cmd);
-      }
-    </script>
-  </head>
-  <body>
-    <h2>Управление светодиодами</h2>
-    <button onclick="sendCommand('on1')">Включить LED1</button>
-    <button onclick="sendCommand('on2')">Включить LED2</button>
-    <button onclick="sendCommand('on3')">Включить LED3</button>
-    <button onclick="sendCommand('onall')">Включить все</button>
-    <button onclick="sendCommand('off')">Выключить</button>
-    <button onclick="sendCommand('blink')">Мигающий режим</button>
-    <button onclick="sendCommand('traffic')">Режим светофора</button>
-  </body>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>ESP32 LED Control</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 20px; text-align: center; }
+    button { margin: 10px; padding: 15px 30px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h2>Керування світлодіодами</h2>
+  <button onclick="sendCb('on1')">LED1 ON</button>
+  <button onclick="sendCb('on2')">LED2 ON</button>
+  <button onclick="sendCb('on3')">LED3 ON</button>
+  <button onclick="sendCb('onall')">ALL ON</button>
+  <button onclick="sendCb('off')">ALL OFF</button>
+  <button onclick="sendCb('blink')">BLINK</button>
+  <button onclick="sendCb('traffic')">TRAFFIC</button>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+
+    function sendCb(data) {
+      // отправляем callback_query
+      fetch(`https://api.telegram.org/bot<BOT_TOKEN>/answerCallbackQuery`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          callback_query_id: tg.callbackQueryId,
+          text: data
+        })
+      }).finally(() => tg.close());
+    }
+  </script>
+</body>
 </html>
