@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LED Control</title>
+    <title>Управление светодиодами</title>
     <script>
-      // Функція для відправки даних до бота
       function sendCommand(cmd) {
-        Telegram.WebApp.sendData(cmd); // Надіслати команду до бота
+        Telegram.WebApp.sendData(cmd);
       }
     </script>
   </head>
   <body>
-    <h2>Управління світлодіодами</h2>
-    <button onclick="sendCommand('on1')">Увімкнути LED1</button>
-    <button onclick="sendCommand('on2')">Увімкнути LED2</button>
-    <button onclick="sendCommand('on3')">Увімкнути LED3</button>
-    <button onclick="sendCommand('onall')">Увімкнути всі</button>
-    <button onclick="sendCommand('off')">Вимкнути</button>
-    <button onclick="sendCommand('blink')">Миготіння</button>
-    <button onclick="sendCommand('traffic')">Світлофор</button>
+    <h2>Управление светодиодами</h2>
+    <button onclick="sendCommand('on1')">Включить LED1</button>
+    <button onclick="sendCommand('on2')">Включить LED2</button>
+    <button onclick="sendCommand('on3')">Включить LED3</button>
+    <button onclick="sendCommand('onall')">Включить все</button>
+    <button onclick="sendCommand('off')">Выключить</button>
+    <button onclick="sendCommand('blink')">Мигающий режим</button>
+    <button onclick="sendCommand('traffic')">Режим светофора</button>
   </body>
 </html>
